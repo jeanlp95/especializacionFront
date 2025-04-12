@@ -16,7 +16,15 @@ export class ClasesService {
     
     return this.http.post(`${this.apiUrl}/api/v1/traducir`, { 
       textoPeticion: text,
-      idiomaPeticion: idioma,
+      codUsuarioPeticion: codUsuario
+     });
+  };
+
+  sendTextToAssintant(text: string, codUsuario: string): Observable<any> {
+    console.log("LLAMADA A SEND TO ASSISTANT SERVICE", text, codUsuario);
+    
+    return this.http.post(`${this.apiUrl}/api/v1/traducir`, { 
+      textoPeticion: text,
       codUsuarioPeticion: codUsuario
      });
   }
