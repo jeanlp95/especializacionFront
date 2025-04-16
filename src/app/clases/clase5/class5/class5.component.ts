@@ -1,24 +1,25 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { ClasesService } from '../../clases.service';
 import { CommonModule } from '@angular/common';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import {MatButtonModule} from '@angular/material/button';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { ClasesService } from '../clases.service';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
-  selector: 'app-class3',
-  standalone: true,
+  selector: 'app-class5',
   imports: [CommonModule, MatProgressSpinnerModule, MatButtonModule, FormsModule, MatFormFieldModule, MatInputModule],
-  templateUrl: './class3.component.html',
-  styleUrl: './class3.component.css'
+  templateUrl: './class5.component.html',
+  styleUrl: './class5.component.css'
 })
-
-export class Class3Component {
+export class Class5Component {
   constructor(private clasesService: ClasesService) {}
 
   @ViewChild('messageInput') messageInput!: ElementRef<HTMLInputElement>;
+  @ViewChild('modelSelect') modelSelect!: ElementRef<HTMLInputElement>;
+  @ViewChild('sizeSelect') sizeSelect!: ElementRef<HTMLInputElement>;
+  @ViewChild('qualitySelect') qualitySelect!: ElementRef<HTMLInputElement>;
   
   imagenUrl: string = 'https://picsum.photos/500/600';
   isLoading:boolean = false;
@@ -27,12 +28,16 @@ export class Class3Component {
   async enviarInfo(){
     this.isLoading = true;
     const text = this.messageInput.nativeElement.value.trim();
+    const model = this.modelSelect.nativeElement.value;
+    const size = this.sizeSelect.nativeElement.value;
+    const quality = this.qualitySelect.nativeElement.value;
     console.log("TEXTO A ENVIAR", text, this.id);
+    console.log("ELEMENTOS SELECCIONADOS", model, size, quality);
     
     if (!text) return;
 
     try {
-      const response = await this.clasesService.generarImagen(text, this.id).toPromise();
+      const response = await this.clasesService.generarImagen(text, this.id, model, size, quality).toPromise();
 
       console.log("respuesta del servidor", response);
 
@@ -48,5 +53,4 @@ export class Class3Component {
     }
 
   }
-
 }

@@ -11,12 +11,14 @@ export class ClasesService {
 
   constructor(private http: HttpClient) { }
 
-  sendTextToBackend(text: string, idioma: string, codUsuario: string): Observable<any> {
+  sendTextToBackend(text: string, idioma: string, codUsuario: string, model?: string): Observable<any> {
     console.log("LLAMADA A SEND TEXT SERVICE", text, idioma, codUsuario);
     
     return this.http.post(`${this.apiUrl}/api/v1/traducir`, { 
       textoPeticion: text,
-      codUsuarioPeticion: codUsuario
+      codUsuarioPeticion: codUsuario,
+      idiomaPeticion: idioma,
+      ...(model ? { modelo: model } : {})
      });
   };
 
@@ -26,6 +28,18 @@ export class ClasesService {
     return this.http.post(`${this.apiUrl}/api/v1/traducir`, { 
       textoPeticion: text,
       codUsuarioPeticion: codUsuario
+     });
+  };
+
+  generarImagen(text: string, codUsuario: string, model?: string, size?: string, quality?: string): Observable<any> {
+    console.log("LLAMADA A GENERAR IMAGEN SERVICE", text, codUsuario);
+    
+    return this.http.post(`${this.apiUrl}/api/imagen/v1/generar`, { 
+      textoPeticion: text,
+      codUsuarioPeticion: codUsuario,
+      ...(model ? { model } : {}),
+      ...(size ? { size } : {}),
+      ...(quality ? { quality } : {}),
      });
   }
 }

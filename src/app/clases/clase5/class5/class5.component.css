@@ -36,4 +36,18 @@ body, html {
   td {
     padding-right: 8px;
   }
+
+  .language-selector{
+    padding-top: 20px;
+    text-align: center;
+  }
   
+  .language-selector select {
+    padding: 8px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    background-color: white;
+    cursor: pointer;
+  }

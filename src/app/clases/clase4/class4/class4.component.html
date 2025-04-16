@@ -1,0 +1,36 @@
+<div class="chat-container">
+    <div class="chat-header">
+      <h2>Especializacion: traductor</h2>
+    </div>
+    
+    <div class="chat-messages" #messagesContainer>
+    </div>
+    
+    <div class="chat-input-container">
+      <div class="language-selector">
+        <select #languageSelect>
+          <option value="ingles" selected>Ingles</option>
+          <option value="español" >Español</option>
+          <option value="frances">Frances</option>
+        </select>
+        <select #modelSelect>
+          <option value="OpenIA" selected>OpenIA</option>
+          <option value="DeepSeek" >DeepSeek</option>
+        </select>
+      </div>
+      
+      <input 
+        type="text" 
+        #messageInput
+        placeholder="Escribe un mensaje..."
+        (keyup.enter)="sendMessage()"
+        class="message-input"
+      >
+      
+      <button (click)="sendMessage()" class="send-button">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <path fill="currentColor" d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+        </svg>
+      </button>
+    </div>
+</div>

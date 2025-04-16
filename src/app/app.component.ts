@@ -9,10 +9,5 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  links = [
-    { path: '/home', label: 'Home' },
-    { path: '/class1', label: 'Class 1' },
-    { path: '/class2', label: 'Class 2' },
-    { path: '/class3', label: 'Class 3' }
-  ];
+  
 }
