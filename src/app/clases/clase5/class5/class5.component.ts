@@ -24,13 +24,14 @@ export class Class5Component {
   imagenUrl: string = 'https://picsum.photos/500/600';
   isLoading:boolean = false;
   id = crypto.randomUUID();
+  selectedModel = "dall-e-3";
 
   async enviarInfo(){
     this.isLoading = true;
     const text = this.messageInput.nativeElement.value.trim();
     const model = this.modelSelect.nativeElement.value;
     const size = this.sizeSelect.nativeElement.value;
-    const quality = this.qualitySelect.nativeElement.value;
+    const quality = this.qualitySelect?.nativeElement.value;
     console.log("TEXTO A ENVIAR", text, this.id);
     console.log("ELEMENTOS SELECCIONADOS", model, size, quality);
     
